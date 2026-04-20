@@ -21,7 +21,7 @@ permissions:
   pull-requests: read
 
 jobs:
-  call-workflow-passing-data:
+  call-gh-pages-pr-table:
     uses: ucsb-cs156/workflows/.github/workflows/01-gh-pages-pr-table.yml@main
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

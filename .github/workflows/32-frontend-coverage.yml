@@ -8,6 +8,11 @@ on:
     branches: [main]
     paths: [frontend/**, .github/workflows/32-frontend-coverage.yml]
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   call-frontend-coverage:
     uses: ucsb-cs156/workflows/.github/workflows/32-frontend-coverage.yml@main

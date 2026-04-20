@@ -8,6 +8,9 @@ on:
     branches: [ main ]
     paths: [ src/** , .github/workflows/15-backend-format.yml]
 
+permissions:
+  contents: read
+
 jobs:
   call-backend-format:
     uses: ucsb-cs156/workflows/.github/workflows/15-backend-format.yml@main

@@ -11,8 +11,13 @@ on:
     branches: [ main ]
     paths: [src/**, pom.xml, lombok.config, .github/workflows/10-backend-unit.yml]
 
+permissions:
+  contents: write
+  pages: write
+  pull-requests: read
+
 jobs:
-  call-workflow-passing-data:
+  call-backend-unit:
     uses: ucsb-cs156/workflows/.github/workflows/10-backend-unit.yml@main
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

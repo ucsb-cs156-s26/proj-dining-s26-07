@@ -8,6 +8,9 @@ on:
     branches: [main]
     paths: [frontend/**, .github/workflows/36-frontend-eslint.yml]
 
+permissions:
+  contents: read
+
 jobs:
   call-frontend-eslint:
     uses: ucsb-cs156/workflows/.github/workflows/36-frontend-eslint.yml@main

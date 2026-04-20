@@ -11,6 +11,11 @@ on:
     branches: [ main ]
     paths: [src/**, pom.xml, lombok.config, .github/workflows/12-backend-jacoco.yml]
 
+permissions:
+  contents: write
+  pages: write
+  pull-requests: read
+
 jobs:
   call-backend-jacoco:
     uses: ucsb-cs156/workflows/.github/workflows/12-backend-jacoco.yml@main

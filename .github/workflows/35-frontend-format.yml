@@ -8,6 +8,9 @@ on:
     branches: [main]
     paths: [frontend/**, .github/workflows/35-frontend-format.yml]
 
+permissions:
+  contents: read
+
 jobs:
   call-frontend-format:
     uses: ucsb-cs156/workflows/.github/workflows/35-frontend-format.yml@main

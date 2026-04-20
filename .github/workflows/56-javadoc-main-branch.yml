@@ -9,6 +9,11 @@ on:
       - 'pom.xml'
       - '.github/workflows/56-javadoc-main-branch.yml'
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   call-javadoc-main:
     uses: ucsb-cs156/workflows/.github/workflows/56-javadoc-main-branch.yml@main

@@ -10,6 +10,11 @@ on:
   pull_request:
     paths: [frontend/**, .github/workflows/33-frontend-pr-mutation-testing.yml]
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   call-frontend-pr-mutation-testing:
     uses: ucsb-cs156/workflows/.github/workflows/33-frontend-pr-mutation-testing.yml@main
