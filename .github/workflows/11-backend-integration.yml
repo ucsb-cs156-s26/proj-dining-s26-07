@@ -11,6 +11,9 @@ on:
     branches: [ main ]
     paths: [src/**, pom.xml, lombok.config, .github/workflows/11-backend-integration.yml]
 
+permissions:
+  contents: read
+
 env:
     # See: https://github.com/actions/setup-java#supported-distributions
     JAVA_DISTRIBUTION: ${{ vars.JAVA_DISTRIBUTION || 'temurin' }} 

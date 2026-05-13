@@ -9,44 +9,13 @@ on:
       - 'pom.xml'
       - '.github/workflows/56-javadoc-main-branch.yml'
 
-env:
-  GH_TOKEN: ${{ github.token }}
-  # See: https://github.com/actions/setup-java#supported-distributions
-  JAVA_DISTRIBUTION: ${{ vars.JAVA_DISTRIBUTION || 'temurin' }} 
-
-
 permissions:
   contents: write
   pages: write
   id-token: write
 
-jobs: 
-  build-javadoc-main:
-    name: Build Javadoc (main branch)
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout local code to establish repo
-      uses: actions/checkout@v4
-    - name: Set up Java (version from .java-version file)
-      uses: actions/setup-java@v4
-      with:
-         distribution: ${{ env.JAVA_DISTRIBUTION }} 
-         java-version-file: ./.java-version
-         cache: 'maven'
-         cache-dependency-path: 'pom.xml' 
-  
-    - name: Build javadoc
-      run: mvn  -ntp -B -DskipTests javadoc:javadoc
-
-    - name: Deploy 🚀    
-      if: always() # always upload artifacts, even if tests fail
-      uses: Wandalen/wretry.action@master
-      with:
-        action: JamesIves/github-pages-deploy-action@v4
-        attempt_limit: 3
-        attempt_delay: 5000
-        with: |
-          branch: gh-pages # The branch the action should deploy to.
-          folder: target/reports/apidocs # The folder where the javadoc files are located
-          clean: true # Automatically remove deleted files from the deploy branch
-          target-folder: javadoc # The folder that we serve our javadoc files from
+jobs:
+  call-javadoc-main:
+    uses: ucsb-cs156/workflows/.github/workflows/56-javadoc-main-branch.yml@main
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
