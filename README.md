@@ -2,12 +2,16 @@
 
 UCSB Dining Hall Menus and Reviews
 
+# Deployments
+
+Note: CMPSC 156 Student teams should not change the prod/qa links below to match their team's links; you should maintain the README.md file so that it can be merged into the https://github.com/ucsb-cs156/proj-dining/ repo at the end of the quarter.
+
 | Deployment | URL |
 |-|-|
 | production | <https://dining.dokku-00.cs.ucsb.edu> |
 | qa | <https://dining-qa.dokku-00.cs.ucsb.edu> |
 
-Sprint Planning Doc for S25:
+Sprint Planning Doc:
 * <https://docs.google.com/document/d/1VUmwQ6v9CETMAIM0KplYDxt7ZocQmSNv7fZM3tVoHfw/edit?usp=sharing>
 
 # Versions
