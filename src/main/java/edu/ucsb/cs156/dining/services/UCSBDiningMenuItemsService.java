@@ -59,7 +59,11 @@ public class UCSBDiningMenuItemsService {
     url = url.replace("{dining-common-code}", diningCommonCode);
     url = url.replace("{meal-code}", mealCode);
 
-    System.out.println("currently running");
+    log.info(
+        "Fetching menu items for date: {}, dining common: {}, meal: {}",
+        dateTime,
+        diningCommonCode,
+        mealCode);
 
     ResponseEntity<String> re = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
     String retBody = re.getBody();
