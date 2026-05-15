@@ -1,12 +1,51 @@
 import React from "react";
 import { Form, Button } from "react-bootstrap";
 
-export default function ReviewForm({ initialItemName, submitAction }) {
-  const [comments, setComments] = React.useState("");
-  const [stars, setStars] = React.useState(5);
+function formatDateTimeLocal(value) {
+  if (!value) {
+    return "";
+  }
+
+  if (typeof value === "string") {
+    return value.slice(0, 16);
+  }
+
+  return new Date(value).toISOString().slice(0, 16);
+}
+
+export default function ReviewForm({
+  initialItemName,
+  initialReviewerComments,
+  initialItemsStars,
+  initialDateItemServed,
+  submitAction,
+  submitButtonText = "Submit Review",
+}) {
+  const [comments, setComments] = React.useState(initialReviewerComments ?? "");
+  const [stars, setStars] = React.useState(initialItemsStars ?? 5);
   const [dateServed, setDateServed] = React.useState(() => {
-    return new Date().toISOString().slice(0, 16); // Default to now, in YYYY-MM-DDTHH:mm format
+    return initialDateItemServed
+      ? formatDateTimeLocal(initialDateItemServed)
+      : new Date().toISOString().slice(0, 16);
   });
+
+  React.useEffect(() => {
+    if (initialReviewerComments !== undefined) {
+      setComments(initialReviewerComments ?? "");
+    }
+  }, [initialReviewerComments]);
+
+  React.useEffect(() => {
+    if (initialItemsStars !== undefined) {
+      setStars(initialItemsStars ?? 5);
+    }
+  }, [initialItemsStars]);
+
+  React.useEffect(() => {
+    if (initialDateItemServed !== undefined) {
+      setDateServed(formatDateTimeLocal(initialDateItemServed));
+    }
+  }, [initialDateItemServed]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,7 +63,7 @@ export default function ReviewForm({ initialItemName, submitAction }) {
         <Form.Control
           id="review-item-name"
           type="text"
-          value={initialItemName}
+          value={initialItemName ?? ""}
           disabled
         />
       </Form.Group>
@@ -67,7 +106,7 @@ export default function ReviewForm({ initialItemName, submitAction }) {
         />
       </Form.Group>
 
-      <Button type="submit">Submit Review</Button>
+      <Button type="submit">{submitButtonText}</Button>
     </Form>
   );
 }
